@@ -1,26 +1,74 @@
 {% extends "shop/base.html" %}
+{% load form_tags %}
+{% load static %}
 
 {% block title %}
-  Checkout
+    Checkout
 {% endblock %}
 
 {% block content %}
-  <h1>Checkout</h1>
-  <div class="order-info">
-    <h3>Your order</h3>
-    <ul>
-      {% for item in cart %}
-        <li>
-          {{ item.quantity }}x {{ item.product.name }}
-          <span>${{ item.total_price }}</span>
-        </li>
-      {% endfor %}
-    </ul>
-    <p>Total: ${{ cart.get_total_price }}</p>
-  </div>
-  <form method="post" class="order-form">
-    {{ form.as_p }}
-    <p><input type="submit" value="Place order"></p>
-    {% csrf_token %}
-  </form>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header text-center bg-primary text-white">
+                    <h2>Checkout</h2>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="first_name" class="form-label">First name</label>
+                            {{ form.first_name|add_class:"form-control" }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="last_name" class="form-label">Last name</label>
+                            {{ form.last_name|add_class:"form-control" }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            {{ form.email|add_class:"form-control" }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="address" class="form-label">Address</label>
+                            {{ form.address|add_class:"form-control" }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="postal_code" class="form-label">Postal code</label>
+                            {{ form.postal_code|add_class:"form-control" }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="city" class="form-label">City</label>
+                            {{ form.city|add_class:"form-control" }}
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">Place order</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h4>Your order</h4>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group mb-3">
+                        {% for item in cart %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            {{ item.quantity }}x {{ item.product.name }}
+                            <span>${{ item.total_price }}</span>
+                        </li>
+                        {% endfor %}
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>Total:</span>
+                            <strong>${{ cart.get_total_price }}</strong>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
