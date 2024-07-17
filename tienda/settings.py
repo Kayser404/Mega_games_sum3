@@ -107,7 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es'
 
 TIME_ZONE = 'UTC'
 
@@ -135,7 +135,7 @@ MEDIA_ROOT = BASE_DIR/ 'media'
 CART_SESSION_ID = 'cart'
 
 
-LOGIN_URL = 'login'
+LOGIN_URL = 'shop:login'
 LOGIN_REDIRECT_URL = 'shop:product_list'
 LOGOUT_REDIRECT_URL = 'shop:product_list'
 

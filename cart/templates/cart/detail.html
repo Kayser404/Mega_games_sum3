@@ -32,16 +32,16 @@
             <td>{{ product.name }}</td>
             <td>
               <form action="{% url 'cart:cart_add' product.id %}" method="post">
-                {{ item.update_quantity_form.quantity|add_class:"form-control d-inline w-auto" }}
-                {{ item.update_quantity_form.override }}
-                <button type="submit" class="btn btn-primary btn-sm">Actualizar Cantidad</button>
                 {% csrf_token %}
+                {{ item.update_quantity_form.quantity|add_class:"form-control" }}
+                {{ item.update_quantity_form.override }}
+                <button type="submit" class="btn btn-primary">Actualizar Cantidad</button>
               </form>
             </td>
             <td>
               <form action="{% url 'cart:cart_remove' product.id %}" method="post">
-                <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                 {% csrf_token %}
+                <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
               </form>
             </td>
             <td class="num">${{ item.price }}</td>
