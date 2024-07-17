@@ -12,17 +12,17 @@
         <div class="col-md-8">
             <div class="card shadow">
                 <div class="card-header text-center bg-primary text-white">
-                    <h2>Checkout</h2>
+                    <h2>Compra</h2>
                 </div>
                 <div class="card-body">
                     <form method="post">
                         {% csrf_token %}
                         <div class="mb-3">
-                            <label for="first_name" class="form-label">First name</label>
+                            <label for="first_name" class="form-label">Nombre</label>
                             {{ form.first_name|add_class:"form-control" }}
                         </div>
                         <div class="mb-3">
-                            <label for="last_name" class="form-label">Last name</label>
+                            <label for="last_name" class="form-label">Apellido</label>
                             {{ form.last_name|add_class:"form-control" }}
                         </div>
                         <div class="mb-3">
@@ -30,19 +30,19 @@
                             {{ form.email|add_class:"form-control" }}
                         </div>
                         <div class="mb-3">
-                            <label for="address" class="form-label">Address</label>
+                            <label for="address" class="form-label">Direccion</label>
                             {{ form.address|add_class:"form-control" }}
                         </div>
                         <div class="mb-3">
-                            <label for="postal_code" class="form-label">Postal code</label>
+                            <label for="postal_code" class="form-label">Codigo postal</label>
                             {{ form.postal_code|add_class:"form-control" }}
                         </div>
                         <div class="mb-3">
-                            <label for="city" class="form-label">City</label>
+                            <label for="city" class="form-label">Ciudad</label>
                             {{ form.city|add_class:"form-control" }}
                         </div>
                         <div class="d-grid">
-                            <button type="submit" class="btn btn-primary">Place order</button>
+                            <button type="submit" class="btn btn-primary">Realizar pedido</button>
                         </div>
                     </form>
                 </div>
@@ -51,7 +51,7 @@
         <div class="col-md-4">
             <div class="card shadow">
                 <div class="card-header bg-primary text-white">
-                    <h4>Your order</h4>
+                    <h4>Su pedido</h4>
                 </div>
                 <div class="card-body">
                     <ul class="list-group mb-3">

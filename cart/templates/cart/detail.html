@@ -1,21 +1,23 @@
 {% extends "shop/base.html" %}
 {% load static %}
+{% load form_filters %}
 
 {% block title %}
-  Your shopping cart
+  Productos en el carrito
 {% endblock %}
 
 {% block content %}
-  <h1>Your shopping cart</h1>
-  <table class="cart">
-    <thead>
+<div class="container mt-5">
+  <h1>Tu carrito de compras</h1>
+  <table class="table table-hover cart">
+    <thead class="thead-dark">
       <tr>
-        <th>Image</th>
-        <th>Product</th>
-        <th>Quantity</th>
-        <th>Remove</th>
-        <th>Unit price</th>
-        <th>Price</th>
+        <th scope="col">Imagen</th>
+        <th scope="col">Producto</th>
+        <th scope="col">Cantidad</th>
+        <th scope="col">Eliminar</th>
+        <th scope="col">Precio unitario</th>
+        <th scope="col">Precio</th>
       </tr>
     </thead>
     <tbody>
@@ -24,22 +26,21 @@
           <tr>
             <td>
               <a href="{{ product.get_absolute_url }}">
-                <img src="{% if product.image %}{{ product.image.url }}
-                {% else %}{% static "img/no_image.png" %}{% endif %}">
+                <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}" class="img-fluid" style="max-width: 100px;">
               </a>
             </td>
             <td>{{ product.name }}</td>
             <td>
-              <form action="{% url "cart:cart_add" product.id %}" method="post">
-                {{ item.update_quantity_form.quantity }}
+              <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                {{ item.update_quantity_form.quantity|add_class:"form-control d-inline w-auto" }}
                 {{ item.update_quantity_form.override }}
-                <input type="submit" value="Update">
+                <button type="submit" class="btn btn-primary btn-sm">Actualizar Cantidad</button>
                 {% csrf_token %}
               </form>
             </td>
             <td>
-              <form action="{% url "cart:cart_remove" product.id %}" method="post">
-                <input type="submit" value="Remove">
+              <form action="{% url 'cart:cart_remove' product.id %}" method="post">
+                <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                 {% csrf_token %}
               </form>
             </td>
@@ -48,19 +49,16 @@
           </tr>
         {% endwith %}
       {% endfor %}
-      <tr class="total">
+      <tr class="total font-weight-bold">
         <td>Total</td>
         <td colspan="4"></td>
         <td class="num">${{ cart.get_total_price }}</td>
       </tr>
     </tbody>
   </table>
-  <p class="text-right">
-    <a href="{% url "shop:product_list" %}" class="button
-    light">Continue shopping</a>
-    <a href="{% url "orders:order_create" %}" class="button">
-      Checkout
-    </a>
-  </p>
+  <div class="text-right">
+    <a href="{% url 'shop:product_list' %}" class="btn btn-secondary">Continuar comprando</a>
+    <a href="{% url 'orders:order_create' %}" class="btn btn-success">Comprar</a>
+  </div>
+</div>
 {% endblock %}
-
