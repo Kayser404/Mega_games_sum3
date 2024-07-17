@@ -5,6 +5,7 @@
 :root {
     --primary-color: #3498db;
     --secondary-color: #2c3e50;
+    --navbar-footer-color: #00BFFF; /* Color celeste para la barra de navegación y el footer */
     --background-color: #ecf0f1;
     --text-color: #2c3e50;
     --text-secondary-color: #7f8c8d;
@@ -17,9 +18,13 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Roboto', sans-serif;
-    background-color: var(--background-color);
+    background-image: url('/media/products/2024/07/megaman.jpg'); /* Asegúrate de que la ruta sea correcta */
+    background-size: cover; /* Asegura que la imagen cubra toda la página */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
     color: var(--text-color);
 }
+
 
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Ubuntu', sans-serif;
@@ -59,7 +64,7 @@ a.button:hover, input[type="submit"]:hover, .btn:hover {
 
 /* Navbar */
 .navbar {
-    background-color: var(--secondary-color);
+    background-color: var(--navbar-footer-color); /* Color celeste para la barra de navegación */
 }
 
 .navbar .navbar-brand,
@@ -73,7 +78,7 @@ a.button:hover, input[type="submit"]:hover, .btn:hover {
 
 /* Footer */
 footer {
-    background-color: var(--secondary-color);
+    background-color: var(--navbar-footer-color); /* Color celeste para el footer */
     color: white;
     padding: 10px 0;
 }
@@ -340,4 +345,26 @@ form div.field {
     border: 0;
     background: #efefef;
     border-radius: 4px;
+}
+
+
+
+/* Estilos para el título épico */
+.epic-title {
+    font-size: 2.5rem;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: bold;
+    color: var(--primary-color);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    position: relative;
+    animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 5px var(--primary-color), 0 0 10px var(--primary-color), 0 0 15px var(--primary-color), 0 0 20px var(--primary-color);
+    }
+    to {
+        text-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color), 0 0 30px var(--primary-color), 0 0 40px var(--primary-color);
+    }
 }
